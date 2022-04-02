@@ -9,7 +9,7 @@
 import random
 
 
-def chech_text(text):
+def check_text(text):
     if len(text.lower()) == len(set(text.lower())):
         print("没有重复值")
     else:
@@ -30,6 +30,35 @@ def chech_text(text):
             print(f"重复值是: {','.join(chongfuzhi)}, 重复次数是: {max(values)}")
 
 
+def check_text2(text):
+    from collections import Counter
+    print(text)
+    if len(text.lower()) == len(set(text.lower())):
+        print("没有重复值")
+    else:
+        new_dict = dict(Counter(text))
+        # sorted_list = sorted(new_dict.items(),
+        #  key=lambda k: k[1],
+        #  reverse=True)
+        # print("倒向排序后,变成列表:", sorted_list)
+        keys = list(new_dict.keys())
+        values = list(new_dict.values())
+        max_values = max(values)
+        if values.count(max_values) > 1:
+            # 如果最大值的数量大于 1
+            max_value_index_list = [
+                index for index, value in enumerate(values)
+                if value == max_values
+            ]
+            keys = [keys[index] for index in max_value_index_list]
+            print(f"重复值是: {','.join(keys)}, 重复次数是: {max_values}")
+
+        else:
+            max_values_index = values.index(max_values)
+            key = keys[max_values_index]
+            print(f"重复值是: {key}, 重复次数是: {max_values}")
+
+
 def check_ci(text):
     s = 0
     lista = text.lower().split()
@@ -38,16 +67,14 @@ def check_ci(text):
             s += 1
     print(s)
 
+
 def main():
     str_str_A = [chr(i) for i in range(65, 91)]
     str_str_a = [chr(i).lower() for i in range(65, 91)]
-    str0 = str_str_A + str_str_a
-    count_len = 100
-    text = ""
-    for _ in range(count_len):
-        text += random.choice(str0)
-
-    chech_text(text)
+    int_str_i = [str(i) for i in range(10)]
+    str0 = str_str_A + str_str_a + int_str_i
+    text = "".join(random.choice(str0) for _ in range(100))
+    check_text2(text)
 
 
 def main1():
@@ -57,4 +84,4 @@ def main1():
 
 
 if __name__ == '__main__':
-    main1()
+    main()
