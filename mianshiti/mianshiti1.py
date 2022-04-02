@@ -59,6 +59,20 @@ def check_text2(text):
             print(f"重复值是: {key}, 重复次数是: {max_values}")
 
 
+def check_text3(text):
+    from collections import Counter
+    print(text)
+    if len(text.lower()) == len(set(text.lower())):
+        print("没有重复值")
+    else:
+        new_dict = dict(Counter(text))
+        repeat_max_value = max(new_dict.values())
+        repeat_str_list = [
+            k for k, v in new_dict.items() if v == repeat_max_value
+        ]
+        print(f"重复值是: {','.join(repeat_str_list)}, 重复次数是: {repeat_max_value}")
+
+
 def check_ci(text):
     s = 0
     lista = text.lower().split()
@@ -74,7 +88,7 @@ def main():
     int_str_i = [str(i) for i in range(10)]
     str0 = str_str_A + str_str_a + int_str_i
     text = "".join(random.choice(str0) for _ in range(100))
-    check_text2(text)
+    check_text3(text)
 
 
 def main1():
