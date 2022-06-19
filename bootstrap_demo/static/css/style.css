@@ -1,0 +1,7 @@
+
+.div_hidden0 {
+    border: 1px solid white;
+}
+.div_hidden:hover {
+    border: 1px solid red;
+}
